@@ -407,22 +407,385 @@ After running this script, check in the browser by searching and see whether the
 
 ---
 
+##  Example  9  - Dynamic LEMP Stack Setup with Ansible (Using Variables)
+
+
+```
+# variable -> dynamic value assignment
+---
+- name: install LEMP stack using variable
+  hosts: localhost
+  become: yes
+  # define variable and assign values
+  vars:
+    web_pkg: nginx # hard codeing
+    db_pkg: mariadb105-server
+    php_pkg:
+     - php
+     - php-fpm
+    web_service: nginx
+    db_service: mariadb
+    php_service: php-fpm
+    web_file_path: /usr/share/nginx/html/index.php
+  tasks:
+  - name: install nginx
+    ansible.builtin.dnf:
+      name: "{{web_pkg}}" # varaible call
+      state: present
+  - name: install mariadb
+    ansible.builtin.dnf:
+      name: "{{db_pkg}}"
+      state: present
+  - name: install php-fpm
+    ansible.builtin.dnf:
+      name: "{{php_pkg}}"
+      state: present
+  - name: start and enable nginx
+    ansible.builtin.systemd_service:
+      name: "{{web_service}}"
+      state: started
+      enabled: true
+  - name: start and enable mariadb
+    ansible.builtin.systemd_service:
+      name: "{{db_service}}"
+      state: started
+      enabled: true
+  - name: start and enable php-fpm
+    ansible.builtin.systemd_service:
+      name: "{{php_service}}"
+      state: started
+      enabled: true
+  - name : deploy php page
+    ansible.builtin.copy:
+      dest: "{{web_file_path}}"
+      content: |
+        <?php
+        phpinfo();
+        ?>
+```
+
+Verify if the code has executed successfully by opening the IP address in a browser and confirming the output.
+
+```
+<public-ip>/index.php
+```
+
+---
+
+##  Example  10  - Switch from lemp to lamp with php
+
+```
+---
+- name: Switch from lemp to lamp with php
+  hosts: localhost
+  become: yes
+
+  vars:
+    old_web_service: nginx
+    new_web_pkg: httpd
+    new_web_service: httpd
+    db_pkg: mariadb105-server
+    php_pkgs: 
+      - php
+      - php-fpm
+    php_index_file: /var/www/html/index.php   # apache default docroot
+
+  tasks:
+    # Stop and disable nginx
+    - name: stop and disable nginx
+      ansible.builtin.service:
+        name: "{{ old_web_service }}"
+        state: stopped
+        enabled: false
+
+    # Install httpd
+    - name: install httpd
+      ansible.builtin.dnf:
+        name: "{{ new_web_pkg }}"
+        state: present
+
+    # Start and enable httpd
+    - name: start httpd
+      ansible.builtin.service:
+        name: "{{ new_web_service }}"
+        state: started
+        enabled: true
+
+    # Install php (already installed but kept for idempotency)
+    - name: install php and php-fpm
+      ansible.builtin.dnf:
+        name: "{{ php_pkgs }}"
+        state: present
+
+    # Deploy php page for apache
+    - name: deploy php application on apache
+      ansible.builtin.copy:
+        dest: "{{ php_index_file }}"
+        content: |
+          <?php
+          phpinfo();
+          ?>
+```
 
 
 
 
+---
+
+# Inventory.
+
+Till now, we were running Ansible playbooks on `localhost`.<br>
+That means the code was created and executed on the same machine.
+<br>
+Now, moving forward, we will write targeted playbooks, where Ansible will run tasks on remote servers instead of localhost.
+<br>
+For this, we need to define an `inventory`.
+
+---
+
+<h3>What is an Inventory in Ansible?</h3>
+
+An inventory is a file that contains a complete collection of target servers on which Ansible will execute playbooks.
+
+👉 Inventory tells Ansible:
+
+- Which servers to manage
+- How to connect to them
 
 
+The commonly used inventory file is:
+  
+  ```
+inventory.ini
+  ```
+
+---
+
+<h4>Important Things Required in Inventory</h4>
+
+To connect to a target server, three things are very important:
+<br>
+1️⃣ IP Address (Private IP – Recommended)
+
+- Private IP is preferred when servers are in the same network (VPC).
+- Public IP can also be used, but it is less secure and depends on internet access.
+
+```
+192.168.1.10
+```
 
 
+2️⃣ Username
+
+- This is the remote server user Ansible will log in as.
+- Example:
+   - `ec2-user` (Amazon Linux)
+   - `ubuntu` (Ubuntu)
 
 
+3️⃣ Private Key
+
+- Used for SSH authentication.
+- This is the `.pem` key that allows Ansible to access the target server without a password.
 
 
+```
+ansible_ssh_private_key_file=/home/ec2-user/key.pem
+```
+
+Sample `inventory.ini` File
+
+```
+[webservers]
+192.168.1.10 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/key.pem
+```
+
+Why Inventory is Important?
+
+- Allows automation on multiple servers
+- Makes playbooks reusable
+- Supports grouping of servers (web, db, app, etc.)
+- Enables centralized management
 
 
+---
+
+<h4>Group's Concept</h4>
+
+When you write an inventory.ini file, you can create groups inside it.<br>
+Because of this, while running a playbook, you can target and run the playbook for a specific group only.<br>
+<br>
+This gives you more control and flexibility.
+<br>
+
+Example: Inventory with Groups
+
+```
+[webserver]
+192.168.1.10 ansible_user=ec2-user
+ansible_ssh_private_key_file=/home/ec2-user/key.pem
+
+192.168.1.10 ansible_user=ec2-user
+ansible_ssh_private_key_file=/home/ec2-user/key.pem
+
+[appserver]
+192.168.1.20 ansible_user=ec2-user
+ansible_ssh_private_key_file=/home/ec2-user/key.pem
+
+192.168.1.10 ansible_user=ec2-user
+ansible_ssh_private_key_file=/home/ec2-user/key.pem
+
+```
+
+Running Playbook for a Specific Group
+
+If you want to run the playbook only on the `appserver` group, use the `--limit` option.
+
+Correct Command:
+
+```
+ansible-playbook lamp-install.yml -i inventory.ini --limit appserver
+```
+
+Why Use `--limit`
+
+- Run playbook on only selected servers
+- Avoid affecting other environments
+- Useful for testing, partial deployments, and production safety?
 
 
+---
+
+Now we will not hard-code IP addresses inside the `.yml` playbook.<br>
+Instead, we will use group names.<br>
+This is important because one target is rarely a single server — usually it is a group of servers.<br>
+<br>
+Below is a clear explanation of the Group concept, covering both `.yml` (playbook) and `.ini` (inventory) files.<br>
+
+---
+
+Why We Use Groups Instead of IPs
+
+- In real projects, multiple servers perform the same role
+- IPs can change, but group names stay constant
+- Playbooks become clean, reusable, and scalable
+- One playbook → many servers
+
+So instead of:
+
+```
+0.0.0.0/1   ❌
+```
+
+We use:
+
+```
+webserver
+appserver
+dbserver
+```
+
+<h4>Inventory File (inventory.ini) – Group Definition</h4>
+
+This is where actual IPs and connection details live.
+
+```
+[webserver]
+192.168.1.10
+192.168.1.11
+
+[appserver]
+192.168.1.20
+192.168.1.21
+
+[dbserver]
+192.168.1.30
+```
+
+You can also add user and key once using group variables:
+
+```
+[appserver:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=/home/ec2-user/key.pem
+```
+
+👉 Inventory answers:<br>
+WHO are the target servers and HOW to connect to them.
+
+
+---
+
+<h4>Playbook File (`.yml`) – Using Group Names</h4>
+Here we never mention IPs.
+
+
+```
+- name: Install LAMP stack
+  hosts: appserver
+  become: yes
+  tasks:
+    - name: Install Apache
+      dnf:
+        name: httpd
+        state: present
+```
+👉 `hosts: appserver` means:
+
+>Run this playbook on all servers inside the appserver group
+
+---
+
+<h3>How Ansible Works Internally</h3>
+
+1.  Playbook reads:
+
+```
+hosts: appserver
+```
+
+2.  Ansible looks into `inventory.ini`
+3.  Finds all IPs under `[appserver]`
+4.  Connects to each server using SSH
+5.  Executes tasks one by one
+
+
+---
+
+Running for Specific Groups
+
+```
+ansible-playbook lamp-install.yml -i inventory.ini
+```
+
+Only `appserver` runs because playbook says:
+
+```
+hosts: appserver
+```
+Or override at runtime:
+```
+ansible-playbook lamp-install.yml -i inventory.ini --limit webserver
+```
+
+Real-World Example (Best Practice)
+<br>
+Inventory
+```
+[prod_app]
+10.0.1.10
+10.0.1.11
+
+[dev_app]
+10.0.2.10
+```
+Playbook
+
+```
+hosts: prod_app
+```
+
+Same playbook → different environments 🔥
 
 
 
