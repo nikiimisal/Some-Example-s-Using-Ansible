@@ -78,6 +78,7 @@ This makes working with Ansible faster and easier 🚀😄
 
 <h1>📘 Ansible Example's</h1>
 
+#example-1-ping-playbook
 ##   Example  1 – Ping Playbook (Easy & Beginner Friendly) 🧠✨
 
 🔍 What does the ping command do?  
