@@ -537,8 +537,11 @@ Verify if the code has executed successfully by opening the IP address in a brow
 Till now, we were running Ansible playbooks on `localhost`.<br>
 That means the code was created and executed on the same machine.
 <br>
+<br>
+
 Now, moving forward, we will write targeted playbooks, where Ansible will run tasks on remote servers instead of localhost.
 <br>
+
 For this, we need to define an `inventory`.
 
 ---
@@ -565,6 +568,7 @@ inventory.ini
 
 To connect to a target server, three things are very important:
 <br>
+
 1️⃣ IP Address (Private IP – Recommended)
 
 - Private IP is preferred when servers are in the same network (VPC).
@@ -622,18 +626,14 @@ Example: Inventory with Groups
 
 ```
 [webserver]
-192.168.1.10 ansible_user=ec2-user
-ansible_ssh_private_key_file=/home/ec2-user/key.pem
+192.168.1.10 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/key.pem
 
-192.168.1.10 ansible_user=ec2-user
-ansible_ssh_private_key_file=/home/ec2-user/key.pem
+192.168.1.10 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/key.pem
 
 [appserver]
-192.168.1.20 ansible_user=ec2-user
-ansible_ssh_private_key_file=/home/ec2-user/key.pem
+192.168.1.20 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/key.pem
 
-192.168.1.10 ansible_user=ec2-user
-ansible_ssh_private_key_file=/home/ec2-user/key.pem
+192.168.1.10 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/key.pem
 
 ```
 
@@ -660,6 +660,7 @@ Now we will not hard-code IP addresses inside the `.yml` playbook.<br>
 Instead, we will use group names.<br>
 This is important because one target is rarely a single server — usually it is a group of servers.<br>
 <br>
+
 Below is a clear explanation of the Group concept, covering both `.yml` (playbook) and `.ini` (inventory) files.<br>
 
 ---
@@ -716,7 +717,7 @@ WHO are the target servers and HOW to connect to them.
 
 ---
 
-<h4>Playbook File (`.yml`) – Using Group Names</h4>
+<h4>Playbook File (.yml) – Using Group Names</h4>
 Here we never mention IPs.
 
 
@@ -769,6 +770,7 @@ ansible-playbook lamp-install.yml -i inventory.ini --limit webserver
 ```
 
 Real-World Example (Best Practice)
+<br>
 <br>
 Inventory
 ```
