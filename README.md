@@ -14,18 +14,18 @@
   <tbody>
     <tr>
       <td>
-        <a href="#example-1">Example 1 – Ping Playbook</a><br>
-        <a href="#example-2">Example 2 – Create Folder</a><br>
+        <a href="#example-1">Example 1 – Ping Playbook (Easy & Beginner Friendly)</a><br>
+        <a href="#example-2">Example 2 – Create a folder using Ansible</a><br>
         <a href="#example-3">Example 3 – Create Directory</a><br>
         <a href="#example-4">Example 4 – Copy File</a><br>
         <a href="#example-5">Example 5 – Install Tree</a>
       </td>
       <td>
-        <a href="#example-6">Example 6 – Install Apache</a><br>
+        <a href="#example-6">Example 6 – Install and Run Apache HTTPD with Sample Web Page</a><br>
         <a href="#example-7">Example 7 – NGINX Instead of HTTPD</a><br>
-        <a href="#example-8">Example 8 – LAMP Stack</a><br>
-        <a href="#example-9">Example 9 – Dynamic LEMP</a><br>
-        <a href="#example-10">Example 10 – Switch LEMP to LAMP</a>
+        <a href="#example-8">Example 8 – Install LAMP Stack & Deploy Php-test page</a><br>
+        <a href="#example-9">Example 9 – Dynamic LEMP Stack Setup with Ansible (Using Variables)</a><br>
+        <a href="#example-10">Example 10 – Switch from LEMP to LAMP with php</a>
       </td>
     </tr>
   </tbody>
