@@ -1,36 +1,14 @@
-## 🚀 Quick Navigation
+<h3>🚀 Quick Navigation</h3>
 
-- [Create Shortcut](#example-0)
+
   
-<br>
-<br>  
 
-- [Example 1 – Ping Playbook](#example-1)
-- [Example 2 – Create Folder](#example-2)
-- [Example 3 – Create Directory](#example-3)
-- [Example 4 – Copy File](#example-4)
-- [Example 5 – Install Tree](#example-5)
-- [Example 6 – Install Apache](#example-6)
-- [Example 7 – NGINX Instead of HTTPD](#example-7)
-- [Example 8 – LAMP Stack](#example-8)
-- [Example 9 – Dynamic LEMP](#example-9)
-- [Example 10 – Switch LEMP to LAMP](#example-10)
-
-<br>
-
-- [Inventory](#example-11)
-  
-- [Example 1 - Optimized Ansible Playbook to Install LEMP Stack on Target Servers](#example-12)
-
-
-
-<h2>🚀 Quick Navigation</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Examples (1–5)</th>
-      <th>Examples (6–10)</th>
+      <th>Example's </th>
+      <th>.</th>
     </tr>
   </thead>
   <tbody>
@@ -53,7 +31,25 @@
   </tbody>
 </table>
 
+- [Create Shortcut](#example-0)
 
+  <br>
+  
+<table>
+  <thead>
+    <tr>
+      <th>Example's </th>
+      <th>.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="#example-12">Example 1 –Optimized Ansible Playbook to Install LEMP Stack on Target Servers</a><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
