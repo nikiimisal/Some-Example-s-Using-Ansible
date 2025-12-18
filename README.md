@@ -201,7 +201,7 @@ ok=2
 
 
 <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-17%20222602.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 ---
@@ -220,7 +220,7 @@ ok=2
 ```
 
 <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-17%20224622.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 
@@ -239,7 +239,7 @@ ok=2
 ```
 
 <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-17%20225212.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 ---
@@ -274,7 +274,7 @@ ok=2
 ```
 
 <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-17%20230540.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 
@@ -749,8 +749,8 @@ hosts: appserver
 4.  Connects to each server using SSH
 5.  Executes tasks one by one
 
-
 ---
+
 
 Running for Specific Groups
 
@@ -786,6 +786,101 @@ hosts: prod_app
 ```
 
 Same playbook → different environments 🔥
+
+
+---
+
+---
+
+#  Example's
+
+
+##  Example  1 - Optimized Ansible Playbook to Install LEMP Stack on Target Servers
+
+
+inventry.ini
+```
+# this s the file where you can mention all the ip of target server
+
+[server]
+51.21.246.156 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/server1.pem
+
+```
+
+lemp_on_target.yml
+
+```
+# install lemp on target server in optimize format
+
+---
+
+- name: install lemp on target server
+  hosts: server
+  become: yes
+  tasks:
+  - name: install nginx, mariadb, php
+    ansible.builtin.dnf:
+      name:
+       - nginx
+       - mariadb105-server
+       - php
+       - php-fpm
+      state: present
+  - name: start and enable nginx, mariadb, php
+    ansible.builtin.systemd_service:
+      name: "{{item}}"
+      state: started
+      enabled: true
+    loop:
+     - nginx
+     - mariadb
+     - php-fpm
+  - name: deploy php page
+    ansible.builtin.copy:
+      dest: /usr/share/nginx/html/index.php
+      content: |
+       <?php
+       phpinfo();
+       ?>
+
+```
+
+ To view the output of this example, copy the target server’s public IP address and paste it into the browser’s search bar.
+
+| **AWS-Console**    | **.ini file**          | **.yml file**          |
+|--------------------------------|------------------------------------|------------------------------------|
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-18%20205230.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-18%20201654.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-18%20230311.png?raw=true) |
+
+| **private-key upload on Ansible server **    | **Run .ini and .yml file's**          | **output**          |
+|--------------------------------|------------------------------------|------------------------------------|
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-18%20203421.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-18%20214548.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/l/Screenshot%202025-12-18%20230245.png?raw=true) |
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
