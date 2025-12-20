@@ -48,6 +48,23 @@
   </tbody>
 </table>
 
+- [Handlers](#example-13)
+
+<table>
+  <thead>
+    <tr>
+      <th>Example </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="#example-14">Example 1 –
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ---
 ---
 ---
@@ -940,11 +957,16 @@ lemp_on_target.yml
 ---
 
 
+
+<a id="example-13"></a>
+
+<h1> Handlers </h1>
+
 🔔 Ansible Handlers & Notify 
 
 🔹 What is a Handler?
 
-A handler is a special task in Ansible that runs only when it is triggered by a `notify` directive from another task.
+A handler is a special task in Ansible that runs only when it is triggered by a `notify` directive from another task.<br>
 Handlers execute after all tasks are completed, at the end of the playbook.
 
 They are mainly used for actions that should run only when a change occurs, such as restarting or reloading services.
@@ -1087,6 +1109,10 @@ Imagine you update multiple configuration files:
 ---
 ---
 
+
+#  Example's
+
+<a id="example-14"></a>
 
 
 
