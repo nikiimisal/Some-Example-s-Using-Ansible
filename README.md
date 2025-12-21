@@ -49,6 +49,7 @@
 </table>
 
 - [Handlers](#example-13)
+- [Dynamic Variables in Ansible & some example's](#example-16)
 
 <table>
   <thead>
@@ -1124,6 +1125,131 @@ Imagine you update multiple configuration files:
 ---
 ---
 
+<a id="example-16"></a>
+
+# Dynamic Variables in Ansible
+
+Dynamic variables in Ansible are variables whose values **can change at runtime** based on:
+
+- The target host  
+- Facts collected from the host  
+- Other variables or computations in the playbook  
+
+Unlike static variables (defined in `vars` or `defaults`), **dynamic variables are evaluated during playbook execution**.
+
+---
+
+## Sources of Dynamic Variables
+
+### 1. Host Variables (`host_vars`)<br>
+Variables unique to a host in your inventory.
+
+Example inventory:
+```
+[webservers]
+web1 ansible_host=192.168.1.10
+web2 ansible_host=192.168.1.11
+```
+`ansible_host` is dynamic per host.
+
+---
+
+### 2. Group Variables (`group_vars`)
+Variables assigned to a group of hosts. Can be overridden per host.
+
+Example: `group_vars/webservers.yml`
+```
+http_port: 8080
+```
+Every host in `webservers` will use this port unless overridden.
+
+---
+
+### 3. Facts (`ansible_facts`)
+Facts are **auto-gathered variables** about a system (OS, IP, memory, etc.).
+
+Example:
+```
+- name: Show IP address
+  debug:
+    msg: "This host's IP is {{ ansible_default_ipv4.address }}"
+```
+---
+
+### 4. Registered Variables
+Variables created from the output of a task.
+
+Example:
+```
+- name: Get free memory
+  ansible.builtin.shell: free -m | grep Mem | awk '{print $4}'
+  register: free_mem
+
+- name: Show free memory
+  debug:
+    msg: "Free memory is {{ free_mem.stdout }} MB"
+```
+---
+
+### 5. Loop and Conditional Variables
+Variables created inside loops or using `set_fact` can also be dynamic.
+
+Example:
+```
+- name: Set dynamic variable
+  set_fact:
+    my_var: "{{ item }}"
+  loop:
+    - apple
+    - orange
+```
+---
+
+## Example Playbook Using Dynamic Variables
+
+```
+---
+- name: Example of dynamic variables
+  hosts: all
+  gather_facts: yes
+  vars:
+    static_var: "I am static"
+
+  tasks:
+    - name: Show static variable
+      debug:
+        msg: "{{ static_var }}"
+
+    - name: Show host IP (dynamic from facts)
+      debug:
+        msg: "Host IP is {{ ansible_default_ipv4.address }}"
+
+    - name: Create a dynamic variable with set_fact
+      set_fact:
+        dynamic_var: "Memory available: {{ ansible_memtotal_mb }} MB"
+
+    - name: Show dynamic variable
+      debug:
+        msg: "{{ dynamic_var }}"
+```
+**Explanation:**
+
+- `static_var` → constant  
+- `ansible_default_ipv4.address` → dynamic, different for each host  
+- `dynamic_var` → set at runtime using host facts  
+
+---
+
+## Why Use Dynamic Variables?
+
+- Make playbooks **host-aware**  
+- Avoid **hardcoding values**  
+- Adapt automatically to **different environments**  
+- Use **runtime information** (disk space, IP, CPU, memory, etc.)
+
+
+---
+---
 
 #  Example's
 
