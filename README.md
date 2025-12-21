@@ -59,7 +59,8 @@
   <tbody>
     <tr>
       <td>
-        <a href="#example-14">Example 1 –
+        <a href="#example-14">Example 1 – Without handlers</a><br>
+        <a href="#example-15">Example 2 – With handlers</a><br>
       </td>
     </tr>
   </tbody>
@@ -944,6 +945,20 @@ lemp_on_target.yml
 
 ```
 
+Run this script
+
+```
+
+ansible-playbook nginx.yml -i inventory.ini --syntax-check
+```
+
+```
+ansible-playbook nginx.yml -i inventory.ini
+
+```
+
+
+
  To view the output of this example, copy the target server’s public IP address and paste it into the browser’s search bar.
 
 | **AWS-Console**    | **.ini file**          | **.yml file**          |
@@ -1115,20 +1130,182 @@ Imagine you update multiple configuration files:
 <a id="example-14"></a>
 
 
+## Example 1 : install nginx without handler block
 
 
+without_handeler.yml
+```
+# install nginx without handler block
+---
+
+- name: deployment of nginx without handler
+  hosts: targetserver
+  become: yes
+
+  vars:
+    pkg: nginx
+    svc: nginx
+    file_path: /usr/share/nginx/html/index.html
+    conf_file: /etc/nginx/conf.d/custom.conf
+
+  tasks:
+
+  # install nginx
+  - name: install nginx
+    ansible.builtin.dnf:
+      name: "{{ pkg }}"
+      state: present
+
+  # start and enable nginx
+  - name: start and enable nginx
+    ansible.builtin.systemd:
+      name: "{{ svc }}"
+      state: started
+      enabled: true
+
+  # add configuration block
+  - name: add configuration block
+    ansible.builtin.blockinfile:
+      path: "{{ conf_file }}"
+      create: yes
+      block: |
+        server {
+            listen 80;
+
+            location / {
+                root /usr/share/nginx/html;
+                index index.html index.htm;
+            }
+        }
+
+  # deploy index.html
+  - name: deployment of index page
+    ansible.builtin.copy:
+      dest: "{{ file_path }}"
+      content: "<h1>This app is without handlers</h1>"
+
+```
+
+inventry.ini
+```
+# this s the file where you can mention all the ip of target server
+
+[server]
+51.21.246.156 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/server1.pem
+```
+
+Run this script
+
+```
+ansible-playbook nginx.yml -i inventory.ini --syntax-check
+```
+
+```
+ansible-playbook nginx.yml -i inventory.ini
+```
+
+After running this, check the output.
+
+<p align="center">
+  <img src="" width="500" alt="Initialize Repository Screenshot">
+</p>
+
+---
+
+After confirming the output, change the port number from 80 to 81. This will cause the application to fail and return an error.
+
+<p align="center">
+  <img src="" width="500" alt="Initialize Repository Screenshot">
+</p>
+
+<br>
+
+This is where the use of handlers comes in. It is a concept used to manage such changes.<br>
+So next example be using handler's
 
 
+---
+
+<a id="example-15"></a>
 
 
+## Example 2 : Deploy nginx with handler block
 
 
+with_handler.yml
 
+```
+# install nginx with handler block
+---
+- name: deployment of nginx with handler
+  hosts: targetserver
+  become: yes
 
+  vars:
+    pkg: nginx
+    svc: nginx
+    file_path: /usr/share/nginx/html/index.html
+    conf_file: /etc/nginx/conf.d/custom.conf
 
+  tasks:
 
+  # install nginx
+  - name: install nginx
+    ansible.builtin.dnf:
+      name: "{{ pkg }}"
+      state: present
 
+  # start and enable nginx
+  - name: start and enable nginx
+    ansible.builtin.systemd:
+      name: "{{ svc }}"
+      state: started
+      enabled: true
 
+  # add configuration block
+  - name: add configuration block
+    ansible.builtin.blockinfile:
+      path: "{{ conf_file }}"
+      create: yes
+      block: |
+        server {
+            listen 80;
 
+            location / {
+                root /usr/share/nginx/html;
+                index index.html index.htm;
+            }
+        }
 
+# notify block here
 
+    notify: restart nginx
+
+  # deploy index.html
+  - name: deployment of index page
+    ansible.builtin.copy:
+      dest: "{{ file_path }}"
+      content: "<h1>This app is with handlers</h1>"
+    notify: restart nginx
+
+  handlers:
+  - name: restart nginx
+    ansible.builtin.systemd:
+      name: "{{ svc }}"
+      state: restarted
+
+```
+
+inventry.ini
+
+```
+# this s the file where you can mention all the ip of target server
+
+[server]
+51.21.246.156 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/server1.pem
+```
+
+First, run this file once. After it runs successfully, change the port from 80 to 81 and run it again to verify whether the handler is working properly.
+
+---
+---
