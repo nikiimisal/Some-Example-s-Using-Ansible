@@ -67,6 +67,24 @@
   </tbody>
 </table>
 
+- [Ansible-Role's](#example-17)
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Example </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="#example-">Example 1 – Without handlers</a><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ---
 ---
 ---
@@ -1450,3 +1468,99 @@ First, run this file once. After it runs successfully, change the port from `80`
 
 ---
 ---
+
+
+
+<h1>Ansible Role's</h1>
+
+>Just like Terraform has the concept of modules, Ansible has the concept of roles.
+
+<h3>What are Ansible Roles?</h3>
+
+Ansible roles are a way to organize and reuse automation code in a clean,
+structured, and scalable manner.
+
+Instead of writing everything in one large playbook, roles help you break
+automation into reusable components.
+
+Each role groups related tasks, variables, files, templates, and handlers
+into a standard directory structure, making playbooks easier to read,
+maintain, and share.
+
+<h3>Why use Ansible Roles?</h3>
+
+
+Roles help you:
+
+- 📁 Keep playbooks clean and readable  
+- 🔁 Reuse the same configuration across multiple projects  
+- 📦 Organize tasks, variables, handlers, templates, and files logically  
+- 🚀 Scale automation for real-world projects (multi-tier apps, production setups)
+
+
+
+<h3>Advantages</h3>
+
+- Reusability
+- Readiblity
+- Share wirh othess using ansible - galaxy
+- you can push Toles to ansible- galaxy
+  OR you can pull dhe woles foom galaxy
+
+
+  <h3>Basic structure of an Ansible Role</h3>
+
+A role follows a standard directory structure:
+
+```
+roles/
+└── myrole/
+    ├── tasks/
+    │   └── main.yml        # Main task file
+    ├── vars/
+    │   └── main.yml        # Variables with higher priority
+    ├── defaults/
+    │   └── main.yml        # Default variables (lowest priority)
+    ├── handlers/
+    │   └── main.yml        # Handlers (restart services, reload, etc.)
+    ├── files/
+    │   └── example.conf    # Static files
+    ├── templates/
+    │   └── example.j2      # Dynamic files using Jinja2 templates
+    └── meta/
+        └── main.yml        # Role metadata and dependencies
+```
+
+<h3>Explanation of Role Folders</h3>
+
+- tasks/  `( add tasks )`
+  Stores all task definitions for the role.
+  (`main.yml` is mandatory and is executed by default)
+
+- vars/  `( add variables )` 
+  Stores variables with higher priority.
+  (Overrides defaults but lower than playbook variables)
+
+- defaults/  `( Store default variables) `
+  Stores default variables for the role.
+  (Lowest priority, easy to override)
+
+- handlers/  `( add handlers )`  
+  Stores handlers used for service restarts, reloads, etc.
+  (Triggered using notify)
+
+- files/  `( Store static files )`
+  Stores static files.
+  (Copied to target machines exactly as they are)
+
+- templates/ `( Store dynamic files )`
+  Stores dynamic files using Jinja2 templates.
+  (Variables can be used inside the files)
+
+- meta/ `( add matadata )`
+  Stores role metadata and dependencies.
+  (Defines role information and dependent roles)
+
+
+  
+
