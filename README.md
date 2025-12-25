@@ -79,7 +79,7 @@
   <tbody>
     <tr>
       <td>
-        <a href="#example-">Example 1 – Without handlers</a><br>
+        <a href="#example-18">Example 1</a><br>
       </td>
     </tr>
   </tbody>
@@ -1534,34 +1534,136 @@ roles/
 
 <h3>Explanation of Role Folders</h3>
 
-- tasks/  `( add tasks )`
-  Stores all task definitions for the role.
-  (`main.yml` is mandatory and is executed by default)
+- tasks/  `( add tasks )`n <br>
+  Stores all task definitions for the role.<br>
+  (`main.yml` is mandatory and is executed by default)<br>
 
-- vars/  `( add variables )` 
-  Stores variables with higher priority.
-  (Overrides defaults but lower than playbook variables)
+- vars/  `( add variables )` <br>
+  Stores variables with higher priority.<br>
+  (Overrides defaults but lower than playbook variables)<br>
 
-- defaults/  `( Store default variables) `
-  Stores default variables for the role.
-  (Lowest priority, easy to override)
+- defaults/  `( Store default variables) `<br>
+  Stores default variables for the role.<br>
+  (Lowest priority, easy to override)<br>
 
-- handlers/  `( add handlers )`  
-  Stores handlers used for service restarts, reloads, etc.
-  (Triggered using notify)
+- handlers/  `( add handlers )`  <br>
+  Stores handlers used for service restarts, reloads, etc.<br>
+  (Triggered using notify)<br>
 
-- files/  `( Store static files )`
-  Stores static files.
-  (Copied to target machines exactly as they are)
+- files/  `( Store static files )`<br>
+  Stores static files.<br>
+  (Copied to target machines exactly as they are)<br>
 
-- templates/ `( Store dynamic files )`
-  Stores dynamic files using Jinja2 templates.
-  (Variables can be used inside the files)
+- templates/ `( Store dynamic files )`<br>
+  Stores dynamic files using Jinja2 templates.<br>
+  (Variables can be used inside the files)<br>
 
-- meta/ `( add matadata )`
-  Stores role metadata and dependencies.
-  (Defines role information and dependent roles)
+- meta/ `( add matadata )`<br>
+  Stores role metadata and dependencies.<br>
+  (Defines role information and dependent roles)<br>
 
+<h3>Ansible Galaxy</h3>
+
+- So far, we have been using the GitHub platform to share code.<br>
+- For sharing Ansible code in the form of roles, Ansible has its own dedicated platform called Ansible Galaxy.
+
+Use the same Gmail account associated with your GitHub account to log in to Ansible Galaxy. <br>
+During account creation, when prompted to connect an account (for example, Gmail or phone number), <br>
+choose `GitHub`.
+
+here is the link to create `ansible galixy` account<br>
+👉 [click here](https://galaxy.ansible.com/ui/)
+
+>You can also go to Google and search for Ansible Galaxy.
+
+
+| **ansible-galaxy-Console**    | **connect Github**          | **Profile**          |
+|--------------------------------|------------------------------------|------------------------------------|
+| ![VS]() | ![AWS]() | ![AWS]() |
 
   
+| **nginx**    |
+|--------------------------------|
+| ![VS]() 
+
+
+<a id="example-18"></a>
+
+<h3>Example</h3>
+
+ex .Now, let’s go through an example using an Ansible role.
+
+
+Previously, we looked at the full playbook directly. Now, we will implement it using `Ansible roles`.
+
+>just like this
+
+```
+# install http by using role concept
+---
+- name: install http using role 
+  hosts: localhost
+  become: yes 
+  vars: 
+   - pkg: httpd 
+   - svc: httpd 
+   - file: /var/www/html/
+  tasks: 
+  - name: install httpd 
+    ansible.builtin.dnf:
+      name: "{{pkg}}"
+      state: present 
+  - name: start and enable httpd 
+    ansible.builtin.systemd_service:
+      name: "{{svc}}"
+      state: started
+      enabled: true 
+  - name: deploy index.html page
+    ansible.builtin.copy:
+      src: files/index.html 
+      dest: "{{file}}/index.html" 
+```
+
+
+Now, I will share screenshots showing how to implement it.<br>
+The code I shared above has now been implemented below using roles.<br>
+enter server and init ansible galaxy<br>
+
+
+<p align="center">
+  <img src="" width="500" alt="Initialize Repository Screenshot">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
