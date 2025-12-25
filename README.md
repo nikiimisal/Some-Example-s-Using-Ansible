@@ -1,4 +1,4 @@
-<h3>🚀 Quick Navigation</h3>
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/875615bd-0b3a-4c04-abbd-e55bdb1af73b" /><h3>🚀 Quick Navigation</h3>
 
 
   
@@ -1625,12 +1625,61 @@ Previously, we looked at the full playbook directly. Now, we will implement it u
 ```
 
 
-Now, I will share screenshots showing how to implement it.<br>
+Now, I will share screenshots or script showing how to implement it.<br>
 The code I shared above has now been implemented below using roles.<br>
-enter server and init ansible galaxy<br>
 
 
+- enter server and init ansible galaxy
 <p align="center">
+  <img src="" width="500" alt="Initialize Repository Screenshot">
+</p>
+
+- `with_roles.yml` file
+
+  <p align="center">
+  <img src="" width="500" alt="Initialize Repository Screenshot">
+</p>
+
+
+- varriable file path `cd vars/main.yml`<br>
+  here is the code
+  
+```
+pkg: httpd
+svc: httpd
+file_path: /var/www/html/
+
+```
+
+- Task's file path `cd vars/main.yml`<br>
+  here is the code
+
+```
+- name: install httpd
+  ansible.builtin.dnf:
+    name: "{{ pkg }}"
+    state: present
+
+- name: start and enable httpd
+  ansible.builtin.systemd:
+    name: "{{ svc }}"
+    state: started
+    enabled: yes
+
+- name: deploy index.html page
+  ansible.builtin.copy:
+    src: files/index.html
+    dest: "{{ file_path }}/index.html"
+
+
+```
+<p align="center">
+  <img src="" width="500" alt="Initialize Repository Screenshot">
+</p>
+
+- Run this code Script
+
+  <p align="center">
   <img src="" width="500" alt="Initialize Repository Screenshot">
 </p>
 
