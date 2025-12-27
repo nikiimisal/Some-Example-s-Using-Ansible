@@ -1863,6 +1863,16 @@ With Ansible Vault:
 
 ---
 
+```
+# openssl rand -base64 32 > .vault_pass.txt -> To create password
+# ansible-vault  -> to get options 
+# ansible-vault encrypt inventory.yml --vault-password-file .valut_pass.txt
+# ansible-vault encrypt inventory.ini --ask-vault-pass -> ask password
+# ansible-vault decrypt inventory.ini --vault-password-file .vault_pass.txt
+#  ansible-vault edit inventory.ini --vault-password-file .vault_pass.txt
+#  ansible-vault view inventory.ini --vault-password-file .vault_pass.txt
+```
+
 >>Below are a few screenshots along with examples and notes to clearly demonstrate the concept and help build your basic understanding.
 
 **If we want to view or access data in a secure way, we create a password and use that password to gain access.**<br>
