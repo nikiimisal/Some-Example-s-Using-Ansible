@@ -86,7 +86,7 @@
 </table>
 
 - [Github & Ansible Code-Push, Pull related](#example-19)
-- [Ansible Vault](#example-20)
+- [Ansible Vault  & How to use](#example-20)
  
 ---
 ---
@@ -1580,15 +1580,8 @@ here is the link to create `ansible galixy` account<br>
 
 >You can also go to Google and search for Ansible Galaxy.
 
+- [From here onwards...](#example-19)
 
-| **ansible-galaxy-Console**    | **connect Github**          | **Profile**          |
-|--------------------------------|------------------------------------|------------------------------------|
-| ![VS]() | ![AWS]() | ![AWS]() |
-
-  
-| **nginx**    |
-|--------------------------------|
-| ![VS]() 
 
 
 <a id="example-18"></a>
@@ -1635,13 +1628,13 @@ The code I shared above has now been implemented below using roles.<br>
 
 - enter server and init ansible galaxy
 <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20150414.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 - `with_roles.yml` file
 
   <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20151931.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 
@@ -1655,7 +1648,13 @@ file_path: /var/www/html/
 
 ```
 
-- Task's file path `cd vars/main.yml`<br>
+<p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20180239.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+</p>
+
+---
+
+- Task's file path `cd tasks/main.yml`<br>
   here is the code
 
 ```
@@ -1678,65 +1677,112 @@ file_path: /var/www/html/
 
 ```
 <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20181231.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 - Run this code Script
 
   <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20173559.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
 ---
 
 <a id="example-19"></a>
 
+
 <h2>Github & Ansible Code push ,pull</h2>
+
+
+>> Create A Ansible account <br>
+👉[click here](https://galaxy.ansible.com/ui/)
+
+
+| **Ansible-Galaxy**    | **connect Github**          |
+|--------------------------------|------------------------------------|
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20163723.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20142239.png?raw=true) |
+
+
+  <p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20163654.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+  </p>
+
+
+<h3>Ansible Galaxy Role Initialization</h3>
+
+We need to initialize an Ansible Galaxy role.
+
+- When we run the Ansible Galaxy role init command, a package (role structure) is created.<br>
+  For example, we can create a role for httpd.
+
+- If you want a ready-made example, you can visit the Ansible Galaxy website and search for existing roles, <br>
+  and use them as a reference or directly install them.
+
+- After running the role init command, multiple role folders are automatically created. <br>
+  Inside these folders, we place our scripts, tasks, variables, templates, and handlers.
+
+- This is the core concept of Ansible Roles — <br>
+   - instead of writing everything in a single playbook, we organize our code in a structured and reusable way.
+
+| **Terminal**    | **For referance **          |
+|--------------------------------|------------------------------------|
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20150414.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20142653.png?raw=true) |
+
+
+  I have given you the basic code above, which shows how the idea works. - [Example](#example-18) <br>
+   Right now, we are looking at the logic or workflow behind it.
 
 > Now we will push the code to GitHub and then upload it to Ansible Galaxy.
 
 
+**Create Repo(Master)** 
 
+  <p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20190303.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+  </p>
 
+**Configure Git on the Ansible server to manage and push Ansible code to a remote repository.**
 
-| **Create Repo(Master)**    | **connect Github**          |
-|--------------------------------|------------------------------------|
-| ![VS]() | ![AWS]() |
+  <p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20190622.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+  </p>
 
-
-| **Github-Consol**    |
-|--------------------------------|
-| ![VS]() |
-
-
+**Now Start Github Lifecycle**
 
 | **Git Lifecycle**    | **Git Lifecycle**          |
 |--------------------------------|------------------------------------|
-| ![VS]() | ![AWS]() |
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191758.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191851.png?raw=true) |
+
+**For Git Remote Add**
+
+  <p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191109.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+  </p>
+
 
 
 | **Git Push**    | **For Git Push -Create access Token**          |   **access token**   |  
 |--------------------------------|------------------------------------|------------------------------------|
-| ![VS]() | ![AWS]() | ![AWS]() |
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192429.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191255.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191401.png?raw=true) |
 
 
-| **Git-Hub Repo**    | **Git Lifecycle**          |
-|--------------------------------|------------------------------------|
-| ![VS]() | ![AWS]() |
+ <p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192457.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+  </p>
 
 
 -  We have successfully pushed the code to GitHub. Now we will upload the role to Ansible Galaxy.
 
 
-| **Terminal**    | **Ansible-Galaxy token**          |
+| **Terminal**    | **For That - Ansible-Galaxy token**          |
 |--------------------------------|------------------------------------|
-| ![VS]() | ![AWS]() |
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192949.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192609.png?raw=true) |
 
 
 
 Ansibale Galaxy
   <p align="center">
-  <img src="" width="500" alt="Initialize Repository Screenshot">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193035.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
 
@@ -1745,7 +1791,7 @@ Ansibale Galaxy
   
 | **Terminal**    | *.yml file**          |
 |--------------------------------|------------------------------------|
-| ![VS]() | ![AWS]() |
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193848.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193836.png?raw=true) |
 
 
 
