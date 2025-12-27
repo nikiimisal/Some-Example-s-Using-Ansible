@@ -1492,6 +1492,8 @@ Each role groups related tasks, variables, files, templates, and handlers
 into a standard directory structure, making playbooks easier to read,
 maintain, and share.
 
+---
+
 <h3>Why use Ansible Roles?</h3>
 
 
@@ -1502,7 +1504,7 @@ Roles help you:
 - 📦 Organize tasks, variables, handlers, templates, and files logically  
 - 🚀 Scale automation for real-world projects (multi-tier apps, production setups)
 
-
+---
 
 <h3>Advantages</h3>
 
@@ -1512,8 +1514,9 @@ Roles help you:
 - you can push Toles to ansible- galaxy
   OR you can pull dhe woles foom galaxy
 
+---
 
-  <h3>Basic structure of an Ansible Role</h3>
+<h3>Basic structure of an Ansible Role</h3>
 
 A role follows a standard directory structure:
 
@@ -1566,6 +1569,9 @@ roles/
   Stores role metadata and dependencies.<br>
   (Defines role information and dependent roles)<br>
 
+---
+---
+
 <h3>Ansible Galaxy</h3>
 
 - So far, we have been using the GitHub platform to share code.<br>
@@ -1582,7 +1588,7 @@ here is the link to create `ansible galixy` account<br>
 
 - [From here onwards...](#example-19)
 
-
+---
 
 <a id="example-18"></a>
 
@@ -1621,10 +1627,12 @@ Previously, we looked at the full playbook directly. Now, we will implement it u
       dest: "{{file}}/index.html" 
 ```
 
+---
 
 Now, I will share screenshots or script showing how to implement it.<br>
 The code I shared above has now been implemented below using roles.<br>
 
+---
 
 - enter server and init ansible galaxy
 <p align="center">
@@ -1637,6 +1645,7 @@ The code I shared above has now been implemented below using roles.<br>
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20151931.png?raw=true" width="500" alt="Initialize Repository Screenshot">
 </p>
 
+---
 
 - varriable file path `cd vars/main.yml`<br>
   here is the code
@@ -1687,6 +1696,7 @@ file_path: /var/www/html/
 </p>
 
 ---
+---
 
 <a id="example-19"></a>
 
@@ -1707,6 +1717,7 @@ file_path: /var/www/html/
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20163654.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
+---
 
 <h3>Ansible Galaxy Role Initialization</h3>
 
@@ -1724,6 +1735,8 @@ We need to initialize an Ansible Galaxy role.
 - This is the core concept of Ansible Roles — <br>
    - instead of writing everything in a single playbook, we organize our code in a structured and reusable way.
 
+---
+
 | **Terminal**    | **For referance **          |
 |--------------------------------|------------------------------------|
 | ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20150414.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20142653.png?raw=true) |
@@ -1731,6 +1744,8 @@ We need to initialize an Ansible Galaxy role.
 
   I have given you the basic code above, which shows how the idea works. - [Example](#example-18) <br>
    Right now, we are looking at the logic or workflow behind it.
+
+---
 
 > Now we will push the code to GitHub and then upload it to Ansible Galaxy.
 
@@ -1747,6 +1762,8 @@ We need to initialize an Ansible Galaxy role.
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20190622.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
+  ---
+
 **Now Start Github Lifecycle**
 
 | **Git Lifecycle**    | **Git Lifecycle**          |
@@ -1759,19 +1776,20 @@ We need to initialize an Ansible Galaxy role.
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191109.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
-
+---
 
 | **Git Push**    | **For Git Push -Create access Token**          |   **access token**   |  
 |--------------------------------|------------------------------------|------------------------------------|
 | ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192429.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191255.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191401.png?raw=true) |
 
 
+**Repo**
 
-| **Repo**          |
-|------------------------------------|
-| ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192457.png?raw=true) |
+ <p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192457.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+  </p>
 
-
+---
 
 -  We have successfully pushed the code to GitHub. Now we will upload the role to Ansible Galaxy.
 
@@ -1787,6 +1805,7 @@ Ansibale Galaxy
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193035.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
+---
 
 -  We have successfully pushed the code to Ansible Galaxy. Now let’s see how to pull it from there.
 
@@ -1796,7 +1815,7 @@ Ansibale Galaxy
 | ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193848.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193836.png?raw=true) |
 
 
-
+---
 ---
 
 <a id="example-20"></a>
@@ -1822,6 +1841,8 @@ In real-world Ansible projects, we often need to store sensitive information, su
 - Application user credentials
 
 Storing this data in plain text inside playbooks, inventory files, or variable files is unsafe, especially when the code is pushed to Git or GitHub repositories.
+
+---
 
 🚨 The Problem
 
@@ -1861,6 +1882,7 @@ If you wan see all flags
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-27%20145724.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
+---
 
 We created the password in order to encrypt the `inventory.ini` file. <br>
 Now we will encrypt the `inventory.ini` file using Ansible Vault.
@@ -1870,6 +1892,7 @@ Now we will encrypt the `inventory.ini` file using Ansible Vault.
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-27%20150739.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
+---
   
 We can also decrypt the encrypted file using a command and view the password.<br>
 But if you run the decrypt command, not only you but any other user can also see the Data.
@@ -1882,12 +1905,16 @@ This is Bad practices But i will show how to do it
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-27%20150801.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
+---
+
 Insted of that use this command
 
 
  <p align="center">
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-27%20150912.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
+
+  ---
 
 We can view the file data directly by providing the password, but we have to enter the password every time.<br>
 This flag has a drawback: we need to copy and paste the password each time.<br>
@@ -1896,6 +1923,8 @@ Instead of that, we can pass a password file directly, so there is no need to co
  <p align="center">
   <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-27%20151234.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p
+
+---
 
 If you want to edit a hidden (encrypted) file…
 
