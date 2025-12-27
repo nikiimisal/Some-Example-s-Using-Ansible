@@ -86,6 +86,7 @@
 </table>
 
 - [Github & Ansible Code-Push, Pull related](#example-19)
+- [Ansible Vault](#example-20)
  
 ---
 ---
@@ -1745,6 +1746,75 @@ Ansibale Galaxy
 | **Terminal**    | *.yml file**          |
 |--------------------------------|------------------------------------|
 | ![VS]() | ![AWS]() |
+
+
+
+---
+
+<a id="example-19"></a>
+
+<h1>Ansible Vault</h1>
+
+
+Ansible Vault is a security feature in Ansible used to encrypt and protect sensitive data such as passwords, API keys, SSH private keys, and secret variables used in playbooks and roles.
+
+
+In simple terms:<br>
+👉 Ansible Vault keeps your secrets safe while still letting Ansible use them automatically.
+
+---
+
+🔐 Why Ansible Vault Is Needed
+
+In real-world Ansible projects, we often need to store sensitive information, such as:
+
+- Database passwords
+- Cloud provider access keys (AWS, Azure, GCP)
+- SSL/TLS private keys
+- Application user credentials
+
+Storing this data in plain text inside playbooks, inventory files, or variable files is unsafe, especially when the code is pushed to Git or GitHub repositories.
+
+🚨 The Problem
+
+- Anyone with repository access can view secrets
+- Credentials can be leaked accidentally
+- Violates security best practices and compliance rules
+
+✅ The Solution: Ansible Vault
+
+Ansible Vault provides a secure way to encrypt sensitive data while still allowing Ansible to use it during execution.
+
+With Ansible Vault:
+
+- Secrets remain encrypted at rest
+- Files can be safely committed to version control
+- Only authorized users with the vault password can decrypt or use them
+
+
+---
+
+>>Below are a few screenshots along with examples and notes to clearly demonstrate the concept and help build your basic understanding.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
