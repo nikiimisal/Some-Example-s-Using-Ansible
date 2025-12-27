@@ -1766,8 +1766,15 @@ We need to initialize an Ansible Galaxy role.
 | ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192429.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191255.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20191401.png?raw=true) |
 
 
- <p align="center">
-  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192457.png?raw=true" width="500" alt="Initialize Repository Screenshot">
+
+| **Terminal**    | **For That - Ansible-Galaxy token**          |
+|--------------------------------|------------------------------------|
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192949.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192457.png?raw=true) |
+
+
+Ansibale Galaxy
+  <p align="center">
+  <img src="https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193035.png?raw=true" width="500" alt="Initialize Repository Screenshot">
   </p>
 
 
@@ -1776,7 +1783,7 @@ We need to initialize an Ansible Galaxy role.
 
 | **Terminal**    | **For That - Ansible-Galaxy token**          |
 |--------------------------------|------------------------------------|
-| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192949.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192609.png?raw=true) |
+| ![VS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20193848.png?raw=true) | ![AWS](https://github.com/nikiimisal/Some-Example-s-Using-Ansible/blob/main/img/kkkkkkkk/Screenshot%202025-12-25%20192609.png?raw=true) |
 
 
 
